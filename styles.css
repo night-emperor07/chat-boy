@@ -19,6 +19,30 @@ body, html {
     background-color: #f4f4f4;
     padding: 10px;
     overflow-y: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.new-chat-btn {
+    width: 150px;
+    height: 75px;
+    font-size: calc(0.25em + 1vw);
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.new-chat-btn:hover {
+    background-color: #45a049;
 }
 
 .chat-area {
@@ -37,7 +61,7 @@ body, html {
 }
 
 .top-section .logo {
-    width: 40px; /* Adjust logo size */
+    width: 40px;
     height: 40px;
     margin-right: 10px;
 }
@@ -55,6 +79,8 @@ body, html {
 .input-area {
     padding: 10px;
     border-top: 1px solid #ddd;
+    display: flex;
+    align-items: center;
 }
 
 .input-area textarea {
@@ -65,4 +91,22 @@ body, html {
     padding: 10px;
     resize: none;
     font-size: 14px;
+    flex-grow: 1; /* Allow textarea to take remaining space */
+}
+
+.send-btn {
+    width: 80px;
+    height: 40px;
+    margin-left: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: 1px solid #4CAF50;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.send-btn:hover {
+    background-color: #45a049;
+    border-color: #45a049;
 }
