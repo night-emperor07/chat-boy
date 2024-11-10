@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chatbot</title>
     <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
 </head>
 <body>
     <div class="container">
@@ -12,7 +13,6 @@
             <button class="new-chat-btn">New Chat</button>
             <div class="divider"></div>
             <div class="previous-chats">
-                <!-- List of previous chats will go here -->
                 <ul>
                     <li>Chat 1</li>
                     <li>Chat 2</li>
@@ -24,13 +24,22 @@
             <div class="top-section">
                 <img src="logo.png" alt="Logo" class="logo">
                 <h1>Chatbot</h1>
+                <div class="profile-section">
+                    <img src="user_logo.png" alt="User Profile" class="profile-picture" onclick="toggleMenu()">
+                    <div class="profile-menu" id="profileMenu">
+                        <ul>
+                            <li>Profile</li>
+                            <li>Settings</li>
+                            <li>About</li>
+                            <li>Logout</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="messages">
-                <!-- Chat messages will appear here -->
-            </div>
+            <div class="messages" id="messages"></div>
             <div class="input-area">
-                <textarea placeholder="Type your message..."></textarea>
-                <button class="send-btn">Send</button>
+                <textarea id="userInput" placeholder="Type your message..."></textarea>
+                <button class="send-btn" onclick="sendMessage()">Send</button>
             </div>
         </div>
     </div>
