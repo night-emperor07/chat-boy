@@ -1,7 +1,13 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
+# from flask_cors import CORS
 from datetime import datetime
 
 app = Flask(__name__)
+# CORS(app)
+
+@app.route("/")
+def index():
+    return render_template("index.html")
 
 @app.route('/send_message', methods=['POST'])
 def send_message():
@@ -18,4 +24,4 @@ def send_message():
     })
 
 if __name__ == '__main__':
-    app.run(host="127.0.0.1:5000", debug=True)
+    app.run(host="127.0.0.1:5000")
