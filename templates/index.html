@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chatboy</title>
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/styles.css')}}">
+    <script defer type="text/javascript" src="{{ url_for('static', filename='scripts/script.js')}}"></script>
 </head>
 <body>
     <div class="container">
@@ -25,7 +25,7 @@
                 <img src="logo.png" alt="Logo" class="logo">
                 <h1>Chatbot</h1>
                 <div class="profile-section">
-                    <img src="assets/user.png" alt="User Profile" class="profile-picture" onclick="toggleMenu()">
+                    <img src="{{ url_for('static', filename='images/user.png')}}" alt="User Profile" class="profile-picture" onclick="toggleMenu()">
                     <div class="profile-menu" id="profileMenu">
                         <ul>
                             <li>Profile</li>
