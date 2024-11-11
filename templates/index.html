@@ -20,7 +20,7 @@
     </div>
     <div class="container">
         <div class="chat-window">
-            <button class="new-chat-btn">New Chat</button>
+            <button id="newChatButton" class="new-chat-btn" onclick="openModal()">New Chat</button>
             <div class="divider"></div>
             <div class="previous-chats" id="previousChats">
                 <!-- Previous chats will be populated here -->
@@ -47,6 +47,14 @@
                 <textarea id="userInput" placeholder="Type your message..."></textarea>
                 <button class="send-btn" onclick="sendMessage()">Send</button>
             </div>
+        </div>
+    </div>
+    <div id="newChatModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">×</span>
+            <h3>Create New Chat</h3>
+            <input type="text" id="newChatName" placeholder="Enter chat name" />
+            <button onclick="createChat()">Create Chat</button>
         </div>
     </div>
 </body>

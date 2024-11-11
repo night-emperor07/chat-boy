@@ -149,3 +149,82 @@ async function fetchPreviousChats() {
         console.error('Error fetching previous chats:', error);
     }
 }
+function openModal() {
+    document.getElementById('newChatModal').style.display = 'block';
+}
+
+// Function to close the modal
+function closeModal() {
+    document.getElementById('newChatModal').style.display = 'none';
+}
+
+async function createChat() {
+    const chatName = document.getElementById('newChatName').value;
+
+    if (chatName.trim() === '') {
+        alert('Please enter a chat name.');
+        return;
+    }
+
+    // Collect current messages from the chat area before creating a new chat
+    const currentMessages = Array.from(document.querySelectorAll('.message-wrapper')).map(message => {
+        return {
+            text: message.querySelector('.message-text').textContent,
+            sender: message.classList.contains('user') ? 'user' : 'bot'
+        };
+    });
+
+    // Send current messages to the backend to be saved
+    await saveChat(currentMessages);
+
+    // Send request to create the new chat
+    const response = await fetch('http://127.0.0.1:5000/create_chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chatName })
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        updatePreviousChats(data.previousChats, data.currentChat);
+        clearChatArea(); // Clear chat area for new chat
+        closeModal();
+    } else {
+        alert('Failed to create chat.');
+    }
+}
+
+async function saveChat(messages) {
+    const chat_id = currentChatId; // Store the current chat ID in a global variable
+    const response = await fetch('http://127.0.0.1:5000/save_chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages, chat_id })
+    });
+
+    if (!response.ok) {
+        alert('Failed to save chat.');
+    }
+}
+
+// Function to clear the chat area
+function clearChatArea() {
+    document.getElementById('messages').innerHTML = '';
+}
+
+
+// Function to update the previous chats section
+function updatePreviousChats(previousChats, currentChat) {
+    const previousChatsDiv = document.getElementById('previousChats');
+    previousChatsDiv.innerHTML = ''; // Clear existing chats
+
+    previousChats.forEach(chat => {
+        const chatElement = document.createElement('div');
+        chatElement.textContent = chat.name;
+        chatElement.classList.add('chat-item');
+        if (chat.id === currentChat) {
+            chatElement.classList.add('current-chat');
+        }
+        previousChatsDiv.appendChild(chatElement);
+    });
+}
