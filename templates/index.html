@@ -8,21 +8,27 @@
     <script defer type="text/javascript" src="{{ url_for('static', filename='scripts/script.js')}}"></script>
 </head>
 <body>
+    <!-- Landing Page for Login -->
+    <div class="login-page" id="loginPage">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        <p id="loginError" class="error-message"></p>
+    </div>
     <div class="container">
         <div class="chat-window">
             <button class="new-chat-btn">New Chat</button>
             <div class="divider"></div>
-            <div class="previous-chats">
-                <ul>
-                    <li>Chat 1</li>
-                    <li>Chat 2</li>
-                    <li>Chat 3</li>
-                </ul>
+            <div class="previous-chats" id="previousChats">
+                <!-- Previous chats will be populated here -->
             </div>
         </div>
         <div class="chat-area">
             <div class="top-section">
-                <img src="logo.png" alt="Logo" class="logo">
+                <img src="{{ url_for('static', filename='images/bot.png')}}" alt="bot" class="profile-picture">
                 <h1>Chatbot</h1>
                 <div class="profile-section">
                     <img src="{{ url_for('static', filename='images/user.png')}}" alt="User Profile" class="profile-picture" onclick="toggleMenu()">

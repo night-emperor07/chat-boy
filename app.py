@@ -16,6 +16,37 @@ bnb_config = BitsAndBytesConfig(load_in_8bit=True)
 tokenizer = AutoTokenizer.from_pretrained('meta-llama/Llama-3.2-3B-Instruct')
 model = AutoModelForCausalLM.from_pretrained('meta-llama/Llama-3.2-3B-Instruct', quantization_config=bnb_config, torch_dtype=torch.bfloat16, device_map='cuda')
 
+# Dummy user data
+users = {
+    'testuser': 'password123'
+}
+
+# Dummy chat history data
+chat_history = {
+    'testuser': [
+        {'title': 'Chat with Support'},
+        {'title': 'Chat about Product'},
+        {'title': 'General Inquiry'}
+    ]
+}
+
+@app.route('/login', methods=['POST'])
+def login():
+    data = request.json
+    username = data.get('username')
+    password = data.get('password')
+    
+    if username in users and users[username] == password:
+        return jsonify({'success': True})
+    else:
+        return jsonify({'success': False, 'message': 'Invalid credentials'}), 401
+
+@app.route('/previous_chats', methods=['GET'])
+def previous_chats():
+    username = request.args.get('username')
+    chats = chat_history.get(username, [])
+    return jsonify({'chats': chats})
+
 @app.route("/")
 def index():
     return render_template("index.html")

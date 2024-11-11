@@ -183,7 +183,7 @@ body, html {
 .user .avatar {
     margin-left: 10px;
     margin-right: 0;
-    background-image: url('user_logo.png'); /* Replace with actual path to user avatar */
+    background-image: url('static/images/user_logo.png'); /* Replace with actual path to user avatar */
 }
 
 .user .message-content {
@@ -192,7 +192,7 @@ body, html {
 }
 
 .bot .avatar {
-    background-image: url('bot_logo.png'); /* Replace with actual path to bot avatar */
+    background-image: url('static/images/bot.png'); /* Replace with actual path to bot avatar */
 }
 
 .bot .message-content {
@@ -250,4 +250,91 @@ body, html {
 
 .profile-menu li:hover {
     background-color: #f5f5f5;
+}
+/* Login page styling */
+.login-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f9f9f9;
+}
+
+.login-page h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.login-page form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+.login-page input {
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.login-page button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    display: none;
+}
+/* Container for each message */
+.message-wrapper {
+    display: flex;
+    margin-bottom: 15px;
+    width: 100%; /* Makes each message take up full width of the chat area */
+}
+
+/* User messages: align everything to the right */
+.message-wrapper.user {
+    right: 0;
+    text-align: right;
+}
+
+/* Bot messages: align everything to the left */
+.message-wrapper.bot {
+    left: 0%;
+    text-align: left;
+}
+
+/* Message icon styling */
+.message-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin: 0 10px;
+}
+
+/* Message text styling */
+.message-text {
+    padding: 10px 15px;
+    border-radius: 15px;
+    max-width: 60%;
+    font-size: 14px;
+}
+
+/* Different background colors for user and bot messages */
+.message-wrapper.user .message-text {
+    background-color: #d1e7dd; /* Light green for user message */
+}
+
+.message-wrapper.bot .message-text {
+    background-color: #f8d7da; /* Light pink for bot message */
 }
